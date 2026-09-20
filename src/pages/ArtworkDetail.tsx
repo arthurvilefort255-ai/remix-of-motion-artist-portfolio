@@ -4,12 +4,15 @@ import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useId, useState } from "react";
 import { SiteHeader } from "@/components/ui/site-header";
+import { supabase } from "@/integrations/supabase/client";
 
 const ArtworkDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const artwork = getArtworkBySlug(slug || "");
   const { prev, next } = getAdjacentArtworks(slug || "");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const uid = useId();
   const nameId = `${uid}-name`;
   const emailId = `${uid}-email`;
