@@ -161,12 +161,18 @@ const ArtworkDetail = () => {
                     style={{ borderColor: "var(--hero-border)", color: "var(--hero-dark)" }}
                   />
                 </div>
+                {error && (
+                  <p className="text-sm" style={{ color: "var(--hero-red)" }}>
+                    {error}
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className="self-end mt-4 px-8 py-3.5 text-sm font-medium tracking-wide transition-opacity hover:opacity-80"
+                  disabled={submitting}
+                  className="self-end mt-4 px-8 py-3.5 text-sm font-medium tracking-wide transition-opacity hover:opacity-80 disabled:opacity-50"
                   style={{ backgroundColor: "var(--hero-dark)", color: "var(--hero-light)" }}
                 >
-                  Submit
+                  {submitting ? "Sending…" : "Submit"}
                 </button>
               </form>
             )}
