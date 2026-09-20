@@ -4,12 +4,15 @@ import { ArrowLeft, ArrowRight, X } from "lucide-react";
 import { motion } from "framer-motion";
 import { useId, useState } from "react";
 import { SiteHeader } from "@/components/ui/site-header";
+import { supabase } from "@/integrations/supabase/client";
 
 const ArtworkDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const artwork = getArtworkBySlug(slug || "");
   const { prev, next } = getAdjacentArtworks(slug || "");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const uid = useId();
   const nameId = `${uid}-name`;
   const emailId = `${uid}-email`;
@@ -26,10 +29,30 @@ const ArtworkDetail = () => {
     );
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
+    setSubmitting(true);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const { error: insertError } = await supabase.from("artwork_inquiries").insert({
+      name: String(data.get("name") || "").trim(),
+      email: String(data.get("email") || "").trim(),
+      remarks: String(data.get("remarks") || "").trim() || null,
+      artwork_title: artwork.title,
+      artwork_slug: artwork.slug,
+    });
+
+    setSubmitting(false);
+
+    if (insertError) {
+      setError("Something went wrong sending your inquiry. Please try again.");
+      return;
+    }
+
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
   };
 
   return (
@@ -138,12 +161,18 @@ const ArtworkDetail = () => {
                     style={{ borderColor: "var(--hero-border)", color: "var(--hero-dark)" }}
                   />
                 </div>
+                {error && (
+                  <p className="text-sm" style={{ color: "var(--hero-red)" }}>
+                    {error}
+                  </p>
+                )}
                 <button
                   type="submit"
-                  className="self-end mt-4 px-8 py-3.5 text-sm font-medium tracking-wide transition-opacity hover:opacity-80"
+                  disabled={submitting}
+                  className="self-end mt-4 px-8 py-3.5 text-sm font-medium tracking-wide transition-opacity hover:opacity-80 disabled:opacity-50"
                   style={{ backgroundColor: "var(--hero-dark)", color: "var(--hero-light)" }}
                 >
-                  Submit
+                  {submitting ? "Sending…" : "Submit"}
                 </button>
               </form>
             )}
