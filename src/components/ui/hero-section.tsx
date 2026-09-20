@@ -131,7 +131,6 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
   const introDone = useRef(false);
 
   // ---- Color-bg ----
-  const [buttonHovered, setButtonHovered] = useState(false);
   const colorBgRef = useRef<HTMLDivElement>(null);
 
   // ---- Scroll-based parallax ----
@@ -332,7 +331,7 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
               {/* Button */}
               <Link
                 to="/fotos"
-                className="relative isolate inline-flex min-h-[58px] min-w-[174px] items-center justify-center rounded-full px-[36px] py-[18px] text-[15px] font-medium uppercase leading-[120%] tracking-[1.85px] lg:px-[40px] lg:py-[20px] lg:text-[16px]"
+                className="group relative isolate inline-flex min-h-[58px] min-w-[174px] items-center justify-center rounded-full px-[36px] py-[18px] text-[15px] font-medium uppercase leading-[120%] tracking-[1.85px] lg:px-[40px] lg:py-[20px] lg:text-[16px]"
                 style={{
                   color: "var(--hero-dark)",
                   boxShadow: "inset 0 0 0 2px var(--hero-dark)",
@@ -340,16 +339,12 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
                   backgroundColor: "transparent",
                   textDecoration: "none",
                 }}
-                onMouseEnter={() => setButtonHovered(true)}
-                onMouseLeave={() => setButtonHovered(false)}
-                onFocus={() => setButtonHovered(true)}
-                onBlur={() => setButtonHovered(false)}
               >
                 <img
                   src={`${import.meta.env.BASE_URL}homem-aranha.webp`}
                   alt=""
                   aria-hidden="true"
-                  className={`pointer-events-none absolute left-1/2 top-1/2 -z-10 w-24 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${buttonHovered ? "scale-100 opacity-100" : "scale-75 opacity-0"}`}
+                  className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-24 -translate-x-1/2 -translate-y-1/2 scale-75 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100"
                 />
                 <span className="relative z-10">Ver Fotos</span>
               </Link>
