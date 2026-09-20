@@ -6,7 +6,7 @@ const NotFound = () => {
   const location = useLocation();
 
   useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
+    console.error("Erro 404: rota inexistente:", location.pathname);
   }, [location.pathname]);
 
   return (
@@ -34,17 +34,17 @@ const NotFound = () => {
             lineHeight: 1.15,
           }}
         >
-          Page not found
+          Página não encontrada
         </h1>
         <p className="text-sm mb-10" style={{ color: "var(--hero-paragraphs)" }}>
-          The page you're looking for doesn't exist.
+          A página que você procura não existe.
         </p>
         <Link
           to="/"
           className="inline-block underline text-sm hover:opacity-70 transition-opacity"
           style={{ color: "var(--hero-dark)" }}
         >
-          Return home
+          Voltar ao início
         </Link>
       </div>
     </div>

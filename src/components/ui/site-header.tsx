@@ -22,7 +22,7 @@ export function SiteHeader() {
             pointerEvents: "auto",
           }}
         >
-          A.S.
+          A.V.
         </Link>
 
         {/* Hamburger */}
@@ -30,7 +30,7 @@ export function SiteHeader() {
           onClick={() => setMenuOpen(true)}
           className="hover:opacity-60 transition-opacity"
           style={{ color: "var(--hero-dark)", pointerEvents: "auto" }}
-          aria-label="Open menu"
+          aria-label="Abrir menu"
         >
           <Menu size={24} strokeWidth={1.5} />
         </button>

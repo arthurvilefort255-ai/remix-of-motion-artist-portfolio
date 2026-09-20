@@ -59,7 +59,7 @@ export function ContactOverlay({ open, onClose }: ContactOverlayProps) {
           <button
             ref={closeBtnRef}
             onClick={onClose}
-            aria-label="Close contact form"
+          aria-label="Fechar formulário de contato"
             className="absolute top-8 right-8 hover:opacity-60 transition-opacity"
             style={{ color: "var(--hero-dark)" }}
           >
@@ -78,25 +78,25 @@ export function ContactOverlay({ open, onClose }: ContactOverlayProps) {
               className="text-3xl md:text-4xl mb-10"
               style={{ fontFamily: "'Host Grotesk', sans-serif", color: "var(--hero-dark)" }}
             >
-              Get in touch
+              Entre em contato
             </h2>
 
             {submitted ? (
               <p className="text-sm" style={{ color: "var(--hero-dark)" }}>
-                Thank you for reaching out. We'll be in touch soon.
+                Obrigado pela mensagem. Retornarei em breve.
               </p>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <div>
                   <label htmlFor={nameId} className="block text-sm font-medium mb-2" style={{ color: "var(--hero-dark)" }}>
-                    Name <span style={{ color: "var(--hero-red)" }}>*</span>
+                    Nome <span style={{ color: "var(--hero-red)" }}>*</span>
                   </label>
                   <input
                     id={nameId}
                     required
                     type="text"
                     name="name"
-                    placeholder="Your name"
+                    placeholder="Seu nome"
                     maxLength={100}
                     className="w-full border-0 border-b py-3 text-sm bg-transparent outline-none"
                     style={{ borderColor: "var(--hero-border)", color: "var(--hero-dark)" }}
@@ -119,14 +119,14 @@ export function ContactOverlay({ open, onClose }: ContactOverlayProps) {
                 </div>
                 <div>
                   <label htmlFor={messageId} className="block text-sm font-medium mb-2" style={{ color: "var(--hero-dark)" }}>
-                    Message
+                    Mensagem
                   </label>
                   <textarea
                     id={messageId}
                     name="message"
                     rows={4}
                     maxLength={1000}
-                    placeholder="Tell us about your interest..."
+                    placeholder="Conte um pouco sobre a sessão que você imagina..."
                     className="w-full border-0 border-b py-3 text-sm bg-transparent outline-none resize-none"
                     style={{ borderColor: "var(--hero-border)", color: "var(--hero-dark)" }}
                   />
@@ -136,7 +136,7 @@ export function ContactOverlay({ open, onClose }: ContactOverlayProps) {
                   className="self-end mt-4 px-8 py-3.5 text-sm font-medium tracking-wide transition-opacity hover:opacity-80"
                   style={{ backgroundColor: "var(--hero-dark)", color: "var(--hero-light)" }}
                 >
-                  Send
+                  Enviar
                 </button>
               </form>
             )}

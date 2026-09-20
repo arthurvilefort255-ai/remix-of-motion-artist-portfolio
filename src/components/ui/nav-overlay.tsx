@@ -9,10 +9,11 @@ interface NavOverlayProps {
 }
 
 const NAV_LINKS = [
-  { label: "Home", to: "/", type: "link" as const },
-  { label: "About", to: "/about", type: "link" as const },
-  { label: "Contact", to: "", type: "contact" as const },
-  { label: "Instagram", to: "https://instagram.com", type: "external" as const },
+  { label: "Início", to: "/", type: "link" as const },
+  { label: "Fotos", to: "/fotos", type: "link" as const },
+  { label: "Inspirações", to: "/inspiracoes", type: "link" as const },
+  { label: "Sobre", to: "/sobre", type: "link" as const },
+  { label: "Contato", to: "", type: "contact" as const },
 ];
 
 function NavPillLink({
@@ -135,16 +136,16 @@ export function NavOverlay({ open, onClose }: NavOverlayProps) {
             style={{ backgroundColor: "var(--hero-dark)" }}
             role="dialog"
             aria-modal="true"
-            aria-label="Site navigation"
+            aria-label="Navegação do site"
           >
             <button
               ref={closeBtnRef}
               onClick={onClose}
-              aria-label="Close menu"
+              aria-label="Fechar menu"
               className="absolute top-8 right-8 text-sm uppercase tracking-[2px] hover:opacity-60 transition-opacity"
               style={{ color: "var(--hero-light)", fontFamily: "'Host Grotesk', sans-serif" }}
             >
-              Close
+              Fechar
             </button>
 
             <nav className="flex flex-col items-center gap-6">

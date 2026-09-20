@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { SiteHeader } from "@/components/ui/site-header";
+import { sessoes } from "@/lib/sessoes";
 
 const About = () => {
   return (
@@ -22,8 +23,11 @@ const About = () => {
             transition={{ duration: 0.7 }}
           >
             <img
-              src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800"
-              alt="Artist studio"
+              src={sessoes[0].capa}
+              alt="Fotografia da sessão Londres por Arthur Vilefort"
+              width={1280}
+              height={1600}
+              loading="lazy"
               className="w-full object-cover"
               style={{ aspectRatio: "3/4" }}
             />
@@ -44,31 +48,22 @@ const About = () => {
                 lineHeight: 1.15,
               }}
             >
-              About the Artist
+              Arthur Vilefort
             </h1>
 
             <div className="flex flex-col gap-5 text-base leading-relaxed" style={{ maxWidth: 460 }}>
               <p>
-                Working primarily in oil and acrylic on canvas, I explore the intersection of colour, texture and emotional landscape. Each piece begins as an intuitive response to light and space, evolving through layers of material and gesture.
+                Portfólio de sessões de fotos.
               </p>
               <p>
-                My practice is rooted in the belief that abstract painting can communicate what language cannot — the felt experience of a place, a moment, a shift in atmosphere. I work across various scales, from intimate studies to large immersive canvases.
+                Este espaço reúne ensaios construídos a partir da luz, da arquitetura, da paisagem e dos pequenos acontecimentos encontrados pelo caminho.
               </p>
               <p>
-                Studio based in London. Works available in sizes ranging from 70 × 100 cm to 180 × 200 cm, with custom commissions considered on request.
+                Cada sessão procura preservar a atmosfera do lugar e a espontaneidade de cada instante.
               </p>
             </div>
 
-            <div className="mt-10 text-sm" style={{ color: "var(--hero-paragraphs)" }}>
-              <p className="mb-1">For inquiries and commissions:</p>
-              <a
-                href="mailto:hello@artist-studio.com"
-                className="underline hover:opacity-70 transition-opacity"
-                style={{ color: "var(--hero-dark)" }}
-              >
-                hello@artist-studio.com
-              </a>
-            </div>
+            <p className="mt-10 text-sm" style={{ color: "var(--hero-paragraphs)" }}>Fotografia por Arthur Vilefort.</p>
           </motion.div>
         </div>
       </div>
