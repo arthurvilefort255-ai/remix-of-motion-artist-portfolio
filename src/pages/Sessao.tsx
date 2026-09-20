@@ -41,9 +41,14 @@ export default function Sessao() {
         </header>
         <div className="grid grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3">
           {sessao.fotos.map((foto, index) => (
-            <motion.button key={foto.arquivo} type="button" onClick={() => setFotoAtiva(index)} className="group relative block aspect-[4/3] w-full overflow-hidden text-left" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} aria-label={`Ampliar ${foto.titulo}`}>
-              <img src={foto.arquivo} alt={`${foto.titulo}: ${foto.legenda}`} width={1280} height={1600} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] group-hover:opacity-90" />
-              <span className="sr-only">{foto.titulo}. {foto.legenda}</span>
+            <motion.button key={foto.arquivo} type="button" onClick={() => setFotoAtiva(index)} className="group block w-full overflow-hidden bg-foreground text-left text-background" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} aria-label={`Ampliar ${foto.titulo}`}>
+              <span className="block aspect-[4/3] overflow-hidden">
+                <img src={foto.arquivo} alt={`${foto.titulo}: ${foto.legenda}`} width={1280} height={1600} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] group-hover:opacity-90" />
+              </span>
+              <span className="block min-h-16 px-4 py-3">
+                <span className="block text-sm font-medium">{foto.titulo}</span>
+                <span className="block text-xs opacity-70">{foto.legenda}</span>
+              </span>
             </motion.button>
           ))}
         </div>
