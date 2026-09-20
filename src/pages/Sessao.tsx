@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { SiteHeader } from "@/components/ui/site-header";
+import { SessionBorderArt } from "@/components/session-border-art";
 import { buscarSessao } from "@/lib/sessoes";
 
 export default function Sessao() {
@@ -33,7 +34,9 @@ export default function Sessao() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="mx-auto max-w-[1365px] px-6 pb-20 pt-32 md:px-10 md:pt-40">
+      <section className="relative mx-auto max-w-[1365px] px-6 pb-20 pt-32 md:px-20 md:pt-40 xl:px-24">
+        <SessionBorderArt session={sessao.slug} />
+        <div className="relative z-10">
         <Link to="/fotos" className="mb-7 inline-block text-xs uppercase tracking-[2px] text-muted-foreground hover:text-foreground">Todas as sessões</Link>
         <header className="mb-14 grid gap-5 md:mb-20 md:grid-cols-[1fr_1fr] md:items-end">
           <h1 className="text-5xl font-medium leading-none md:text-7xl">{sessao.nome}</h1>
@@ -51,6 +54,7 @@ export default function Sessao() {
               </span>
             </motion.button>
           ))}
+        </div>
         </div>
       </section>
       <AnimatePresence>

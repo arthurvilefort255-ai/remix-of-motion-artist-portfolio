@@ -12,6 +12,7 @@ All colors MUST be HSL.
   --hero-paragraphs: #262524d9;
   --hero-border: #20201e4d;
   --hero-red: #9b2b34;
+  --sketch-accent: hsl(353 56% 39%);
   --background: hsl(0 0% 100%);
   --foreground: hsl(240 10% 3.9%);
   --card: hsl(0 0% 100%);
@@ -137,6 +138,7 @@ All colors MUST be HSL.
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-sketch-accent: var(--sketch-accent);
 
   /* Shugar Design System Colors */
   --color-context-card-border: var(--context-card-border);
