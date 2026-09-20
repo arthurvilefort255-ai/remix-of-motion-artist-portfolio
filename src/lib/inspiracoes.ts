@@ -41,9 +41,9 @@ export const inspiracoes: Inspiracao[] = [
       "Sua fotografia combina documentação e compromisso com a preservação, aproximando o público da diversidade natural e cultural brasileira.",
     ],
     obras: [
-      { titulo: "Onça", legenda: "Onça atravessando as águas, em um registro da fauna brasileira.", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-onca.png` },
-      { titulo: "Gente", legenda: "Um olhar documental sobre os povos e modos de vida do Brasil.", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-gente.png` },
-      { titulo: "Amazônia", legenda: "A escala da floresta e a relação humana com a natureza amazônica.", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-amazonia.png` },
+      { titulo: "Onça", legenda: "Onça atravessando as águas, em um registro da fauna brasileira.", link: "https://araquemalcantara.com/", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-onca.png` },
+      { titulo: "Gente", legenda: "Um olhar documental sobre os povos e modos de vida do Brasil.", link: "https://araquemalcantara.com/", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-gente.png` },
+      { titulo: "Amazônia", legenda: "A escala da floresta e a relação humana com a natureza amazônica.", link: "https://araquemalcantara.com/", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-amazonia.png` },
     ],
   },
 ];
