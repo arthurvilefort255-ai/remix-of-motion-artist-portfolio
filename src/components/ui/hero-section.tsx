@@ -8,6 +8,8 @@ import {
   useMotionValue,
 } from "framer-motion";
 import { ContactOverlay } from "./contact-overlay";
+import { Link } from "react-router-dom";
+import type { FotoComSessao } from "@/lib/sessoes";
 
 // ---------------------------------------------------------------------------
 // Image data — aspect ratios from original CDN, CSS offsets from source
@@ -24,21 +26,6 @@ interface HeroImage {
   /** true = moves WITH grid direction at keyframe 0, false = moves OPPOSITE */
   parallaxPositive: boolean;
 }
-
-const HERO_PHOTOS: string[] = [
-  "https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600&q=80", // abstract painting
-  "https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=600&q=80", // colorful art
-  "https://images.unsplash.com/photo-1520420097861-e4959843b682?w=600&q=80", // gallery wall
-  "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&q=80", // oil painting
-  "https://images.unsplash.com/photo-1482160549825-59d1b23cb208?w=600&q=80", // modern art
-  "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80", // paint brushes
-  "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=600&q=80", // abstract canvas
-  "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=600&q=80", // artwork detail
-  "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=600&q=80", // colorful abstract
-  "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?w=600&q=80", // painting texture
-  "https://images.unsplash.com/photo-1549490349-8643362247b5?w=600&q=80", // art studio
-  "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=600&q=80", // neon art
-];
 
 const IMAGES: HeroImage[] = [
   { id: 1, w: 633, h: 944, top: "-5.4vw", left: "-7.6vw", parallax: 1, parallaxPositive: false },
@@ -100,20 +87,21 @@ function HeroImage({
   w,
   h,
   src,
+  alt,
   className,
   style,
 }: {
   w: number;
   h: number;
   src: string;
+  alt: string;
   className?: string;
   style?: React.CSSProperties;
 }) {
   return (
     <img
       src={src}
-      alt=""
-      aria-hidden="true"
+      alt={alt}
       loading="eager"
       className={`object-cover rounded-sm ${className ?? ""}`}
       style={{ aspectRatio: `${w}/${h}`, ...style, maxWidth: "none" }}
@@ -125,7 +113,7 @@ function HeroImage({
 // HeroSection
 // ---------------------------------------------------------------------------
 
-export function HeroSection({ gridInView = false }: { gridInView?: boolean }) {
+export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolean; fotos: FotoComSessao[] }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number>(0);
 
@@ -311,7 +299,7 @@ export function HeroSection({ gridInView = false }: { gridInView?: boolean }) {
                     fontFamily: "'Host Grotesk', sans-serif",
                   }}
                 >
-                  Parallax artist portfolio
+                  Arthur Vilefort
                 </h1>
               </div>
             </motion.div>
@@ -353,7 +341,7 @@ export function HeroSection({ gridInView = false }: { gridInView?: boolean }) {
                   fontFamily: "'Host Grotesk', sans-serif",
                 }}
               >
-                Motion-rich portfolio for artists
+                Portfólio de sessões de fotos
               </h5>
 
               {/* Button */}
@@ -375,7 +363,7 @@ export function HeroSection({ gridInView = false }: { gridInView?: boolean }) {
                 onMouseEnter={() => setButtonHovered(true)}
                 onMouseLeave={() => setButtonHovered(false)}
               >
-                Let's connect
+                Entre em contato
               </button>
             </motion.div>
           </div>
@@ -409,25 +397,28 @@ export function HeroSection({ gridInView = false }: { gridInView?: boolean }) {
                   willChange: "transform, opacity",
                 }}
               >
-                {IMAGES.map((img) => (
+                {IMAGES.slice(0, fotos.length).map((img, index) => (
                   <div
                     key={img.id}
                     ref={setImgRef(img.id)}
                     className="will-change-transform"
                     style={{ transform: "translate3d(0,0,0)" }}
                   >
-                    <HeroImage
-                      w={img.w}
-                      h={img.h}
-                      src={HERO_PHOTOS[img.id - 1]}
-                      className="w-[40vw] md:w-[30vw] lg:w-[20vw]"
-                      style={{
-                        maxWidth: "none",
-                        position: "relative",
-                        top: img.top,
-                        left: img.left,
-                      }}
-                    />
+                    <Link to={`/fotos/${fotos[index].sessaoSlug}`} aria-label={`Ver sessão ${fotos[index].sessaoNome}`}>
+                      <HeroImage
+                        w={img.w}
+                        h={img.h}
+                        src={fotos[index].arquivo}
+                        alt={`${fotos[index].titulo}, sessão ${fotos[index].sessaoNome}`}
+                        className="w-[40vw] md:w-[30vw] lg:w-[20vw]"
+                        style={{
+                          maxWidth: "none",
+                          position: "relative",
+                          top: img.top,
+                          left: img.left,
+                        }}
+                      />
+                    </Link>
                   </div>
                 ))}
               </div>
@@ -499,7 +490,7 @@ export function HeroSection({ gridInView = false }: { gridInView?: boolean }) {
                 repeat: Infinity,
               }}
             >
-              Scroll
+              Role para explorar
             </motion.span>
           </motion.div>
         </div>

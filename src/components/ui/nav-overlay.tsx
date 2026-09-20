@@ -20,7 +20,6 @@ function NavPillLink({
   children,
   onClick,
   href,
-  isExternal,
   to,
   type,
   onClose,
@@ -28,7 +27,6 @@ function NavPillLink({
   children: React.ReactNode;
   onClick?: () => void;
   href?: string;
-  isExternal?: boolean;
   to?: string;
   type: "link" | "contact" | "external";
   onClose: () => void;
@@ -160,7 +158,6 @@ export function NavOverlay({ open, onClose }: NavOverlayProps) {
                     type={link.type}
                     to={link.to}
                     href={link.to}
-                    isExternal={link.type === "external"}
                     onClick={link.type === "contact" ? handleContactClick : undefined}
                     onClose={onClose}
                   >
