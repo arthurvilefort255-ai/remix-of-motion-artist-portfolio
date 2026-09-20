@@ -14,7 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      artwork_inquiries: {
+        Row: {
+          artwork_slug: string
+          artwork_title: string
+          created_at: string
+          email: string
+          id: string
+          name: string
+          remarks: string | null
+        }
+        Insert: {
+          artwork_slug: string
+          artwork_title: string
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          remarks?: string | null
+        }
+        Update: {
+          artwork_slug?: string
+          artwork_title?: string
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          remarks?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
