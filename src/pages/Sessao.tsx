@@ -39,12 +39,11 @@ export default function Sessao() {
           <h1 className="text-5xl font-medium leading-none md:text-7xl">{sessao.nome}</h1>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground md:justify-self-end">{sessao.descricao}</p>
         </header>
-        <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 overflow-hidden sm:grid-cols-2 lg:grid-cols-3">
           {sessao.fotos.map((foto, index) => (
-            <motion.button key={foto.arquivo} type="button" onClick={() => setFotoAtiva(index)} className="group block w-full text-left" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} aria-label={`Ampliar ${foto.titulo}`}>
-              <img src={foto.arquivo} alt={`${foto.titulo}: ${foto.legenda}`} width={1280} height={1600} loading="lazy" className={`w-full object-cover transition-opacity duration-300 group-hover:opacity-90 ${index % 3 === 1 ? "aspect-[4/3]" : "aspect-[4/5]"}`} />
-              <span className="mt-3 block text-sm">{foto.titulo}</span>
-              <span className="block text-xs text-muted-foreground">{foto.legenda}</span>
+            <motion.button key={foto.arquivo} type="button" onClick={() => setFotoAtiva(index)} className="group relative block aspect-[4/3] w-full overflow-hidden text-left" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} aria-label={`Ampliar ${foto.titulo}`}>
+              <img src={foto.arquivo} alt={`${foto.titulo}: ${foto.legenda}`} width={1280} height={1600} loading="lazy" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02] group-hover:opacity-90" />
+              <span className="sr-only">{foto.titulo}. {foto.legenda}</span>
             </motion.button>
           ))}
         </div>
