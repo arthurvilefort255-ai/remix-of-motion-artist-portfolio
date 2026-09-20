@@ -34,15 +34,16 @@ export const inspiracoes: Inspiracao[] = [
   {
     slug: "araquem-de-alcantara",
     nome: "Araquém de Alcântara",
-    retratoAlt: "Espaço reservado para retrato de Araquém de Alcântara",
+    retratoAlt: "Araquém de Alcântara fotografando com uma câmera",
+    retrato: `${import.meta.env.BASE_URL}inspiracoes/araquem-de-alcantara-retrato.png`,
     biografia: [
       "Araquém de Alcântara é um fotógrafo brasileiro reconhecido por uma trajetória dedicada à natureza e aos povos do Brasil. Seu olhar percorre paisagens, animais, comunidades e modos de vida em diferentes regiões do país.",
-      "Sua fotografia combina documentação e compromisso com a preservação, aproximando o público da diversidade natural e cultural brasileira. Aqui, as obras poderão ser incluídas depois com os respectivos links oficiais.",
+      "Sua fotografia combina documentação e compromisso com a preservação, aproximando o público da diversidade natural e cultural brasileira.",
     ],
     obras: [
-      { titulo: "Obra a definir", legenda: "Espaço reservado para uma fotografia e seu link oficial." },
-      { titulo: "Obra a definir", legenda: "Espaço reservado para uma fotografia e seu link oficial." },
-      { titulo: "Obra a definir", legenda: "Espaço reservado para uma fotografia e seu link oficial." },
+      { titulo: "Onça", legenda: "Onça atravessando as águas, em um registro da fauna brasileira.", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-onca.png` },
+      { titulo: "Gente", legenda: "Um olhar documental sobre os povos e modos de vida do Brasil.", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-gente.png` },
+      { titulo: "Amazônia", legenda: "A escala da floresta e a relação humana com a natureza amazônica.", imagem: `${import.meta.env.BASE_URL}inspiracoes/araquem-amazonia.png` },
     ],
   },
 ];
