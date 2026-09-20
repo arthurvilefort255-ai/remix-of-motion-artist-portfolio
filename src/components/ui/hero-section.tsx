@@ -7,7 +7,6 @@ import {
   useMotionTemplate,
   useMotionValue,
 } from "framer-motion";
-import { ContactOverlay } from "./contact-overlay";
 import { Link } from "react-router-dom";
 import type { FotoComSessao } from "@/lib/sessoes";
 
@@ -132,8 +131,6 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
   const introDone = useRef(false);
 
   // ---- Color-bg ----
-  const [buttonHovered, setButtonHovered] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
   const colorBgRef = useRef<HTMLDivElement>(null);
 
   // ---- Scroll-based parallax ----
@@ -257,19 +254,6 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
 
   return (
     <>
-      {/* color-bg: fixed at body level, z:-10, behind page background.
-          Original: position fixed, inset 0%, z-index -10 */}
-      <div
-        ref={colorBgRef}
-        className="fixed inset-0 transition-opacity duration-700 ease-in-out"
-        style={{
-          zIndex: -10,
-          opacity: buttonHovered ? 1 : 0,
-          backgroundColor: "rgb(155,43,52)",
-          pointerEvents: "none",
-        }}
-      />
-
       {/* Hero section — 250vh tall */}
       <div
         ref={sectionRef}
@@ -345,26 +329,25 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
               </h5>
 
               {/* Button */}
-              <button
-                type="button"
-                onClick={() => setContactOpen(true)}
-                className="rounded-full uppercase tracking-[1.85px] text-[15px] lg:text-[16px] px-[36px] py-[18px] lg:px-[40px] lg:py-[20px] leading-[120%] font-medium transition-all duration-300 cursor-pointer"
+              <Link
+                to="/fotos"
+                className="group relative isolate inline-flex min-h-[58px] min-w-[174px] items-center justify-center rounded-full px-[36px] py-[18px] text-[15px] font-medium uppercase leading-[120%] tracking-[1.85px] lg:px-[40px] lg:py-[20px] lg:text-[16px]"
                 style={{
-                  color: buttonHovered ? "var(--hero-light)" : "var(--hero-dark)",
-                  boxShadow: buttonHovered
-                    ? "inset 0 0 0 40px var(--hero-dark)"
-                    : "inset 0 0 0 2px var(--hero-dark)",
+                  color: "var(--hero-dark)",
+                  boxShadow: "inset 0 0 0 2px var(--hero-dark)",
                   fontFamily: "'Host Grotesk', sans-serif",
                   backgroundColor: "transparent",
-                  border: "none",
                   textDecoration: "none",
-                  display: "inline-block",
                 }}
-                onMouseEnter={() => setButtonHovered(true)}
-                onMouseLeave={() => setButtonHovered(false)}
               >
-                Entre em contato
-              </button>
+                <img
+                  src={`${import.meta.env.BASE_URL}homem-aranha.webp`}
+                  alt=""
+                  aria-hidden="true"
+                  className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-24 -translate-x-1/2 -translate-y-1/2 scale-75 opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100 group-focus-visible:scale-100 group-focus-visible:opacity-100"
+                />
+                <span className="relative z-10">Ver Fotos</span>
+              </Link>
             </motion.div>
           </div>
 
@@ -495,7 +478,6 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
           </motion.div>
         </div>
       </div>
-      <ContactOverlay open={contactOpen} onClose={() => setContactOpen(false)} />
     </>
   );
 }
