@@ -29,10 +29,30 @@ const ArtworkDetail = () => {
     );
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError(null);
+    setSubmitting(true);
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const { error: insertError } = await supabase.from("artwork_inquiries").insert({
+      name: String(data.get("name") || "").trim(),
+      email: String(data.get("email") || "").trim(),
+      remarks: String(data.get("remarks") || "").trim() || null,
+      artwork_title: artwork.title,
+      artwork_slug: artwork.slug,
+    });
+
+    setSubmitting(false);
+
+    if (insertError) {
+      setError("Something went wrong sending your inquiry. Please try again.");
+      return;
+    }
+
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
   };
 
   return (
