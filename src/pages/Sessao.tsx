@@ -34,7 +34,7 @@ export default function Sessao() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader />
-      <section className="relative mx-auto max-w-[1365px] px-6 pb-20 pt-32 md:px-10 md:pt-40">
+      <section className="relative mx-auto max-w-[1365px] px-6 pb-20 pt-32 md:px-20 md:pt-40 xl:px-24">
         <SessionBorderArt session={sessao.slug} />
         <div className="relative z-10">
         <Link to="/fotos" className="mb-7 inline-block text-xs uppercase tracking-[2px] text-muted-foreground hover:text-foreground">Todas as sessões</Link>

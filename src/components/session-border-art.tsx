@@ -35,11 +35,11 @@ export function SessionBorderArt({ session }: SessionBorderArtProps) {
   return (
     <div className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block" aria-hidden="true">
       {["left-0", "right-0 scale-x-[-1]"].map((position) => (
-        <div key={position} className={`absolute bottom-0 top-64 w-9 ${position}`}>
-          <svg className="h-full w-full text-foreground/35" viewBox="0 0 50 340" preserveAspectRatio="xMidYMin slice" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        <div key={position} className={`absolute bottom-0 top-60 w-14 ${position}`}>
+          <svg className="h-full w-full text-foreground/55" viewBox="0 0 50 340" preserveAspectRatio="xMidYMin slice" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <Sketch />
           </svg>
-          <svg className="absolute left-0 top-1/2 h-full w-full -translate-y-10 text-sketch-accent/55" viewBox="0 0 50 340" preserveAspectRatio="xMidYMin slice" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+          <svg className="absolute left-0 top-1/2 h-full w-full -translate-y-10 text-sketch-accent/65" viewBox="0 0 50 340" preserveAspectRatio="xMidYMin slice" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
             <Sketch />
           </svg>
         </div>
