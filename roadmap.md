@@ -1,7 +1,7 @@
 # Roadmap
 
-## In progress
-- Show the user the files that play the role of `index.html`, `style.css`, and `script.js`.
-
-## Open
-- Decide the portfolio's next step: personalise placeholder content, wire the inquiry forms to a backend, publish live, or polish the hero title clipping.
+## Em andamento
+- Personalizar identidade e traduzir todo o portfólio para português.
+- Criar sessões locais, páginas Fotos e Inspirações e navegação completa.
+- Alimentar o início com seleção aleatória e equilibrada das sessões.
+- Verificar acessibilidade, responsividade, rotas e ausência de conteúdo antigo.
