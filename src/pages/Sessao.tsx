@@ -39,9 +39,9 @@ export default function Sessao() {
           <h1 className="text-5xl font-medium leading-none md:text-7xl">{sessao.nome}</h1>
           <p className="max-w-md text-sm leading-relaxed text-muted-foreground md:justify-self-end">{sessao.descricao}</p>
         </header>
-        <div className="columns-1 gap-5 sm:columns-2 lg:columns-3">
+        <div className="grid grid-cols-1 items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {sessao.fotos.map((foto, index) => (
-            <motion.button key={foto.arquivo} type="button" onClick={() => setFotoAtiva(index)} className="group mb-5 block w-full break-inside-avoid text-left" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} aria-label={`Ampliar ${foto.titulo}`}>
+            <motion.button key={foto.arquivo} type="button" onClick={() => setFotoAtiva(index)} className="group block w-full text-left" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} aria-label={`Ampliar ${foto.titulo}`}>
               <img src={foto.arquivo} alt={`${foto.titulo}: ${foto.legenda}`} width={1280} height={1600} loading="lazy" className={`w-full object-cover transition-opacity duration-300 group-hover:opacity-90 ${index % 3 === 1 ? "aspect-[4/3]" : "aspect-[4/5]"}`} />
               <span className="mt-3 block text-sm">{foto.titulo}</span>
               <span className="block text-xs text-muted-foreground">{foto.legenda}</span>
