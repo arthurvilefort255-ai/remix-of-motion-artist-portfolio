@@ -14,3 +14,4 @@
 - Abrir diretamente a foto escolhida na página inicial.
 - Preencher completamente a área “Role para explorar”.
 - Remover a foto 112 da sessão Londres.
+- Completar a grade de exploração com 12 fotos, distribuídas igualmente nas três colunas.
