@@ -9,7 +9,7 @@
 ## Concluído na validação
 - Verificadas as três rotas, o carregamento das imagens e a exibição em computador e celular.
 
-## Em andamento
+## Concluído nesta atualização
 - Trocar o botão principal por “Ver as Fotos” e remover a seção de contato.
 - Abrir diretamente a foto escolhida na página inicial.
 - Preencher completamente a área “Role para explorar”.

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { SiteHeader } from "@/components/ui/site-header";
 import { buscarSessao } from "@/lib/sessoes";
@@ -19,10 +19,10 @@ export default function Sessao() {
     if (indice >= 0) setFotoAtiva(indice);
   }, [searchParams, sessao]);
 
-  const fecharFoto = () => {
+  const fecharFoto = useCallback(() => {
     setFotoAtiva(null);
     setSearchParams({}, { replace: true });
-  };
+  }, [setSearchParams]);
 
   useEffect(() => {
     if (fotoAtiva === null || !sessao) return;
@@ -37,7 +37,7 @@ export default function Sessao() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKey);
     };
-  }, [fotoAtiva, sessao]);
+  }, [fecharFoto, fotoAtiva, sessao]);
 
   if (!sessao) {
     return <main className="flex min-h-screen items-center justify-center bg-background px-6 text-center"><SiteHeader /><div><h1 className="mb-4 text-3xl">Sessão não encontrada</h1><Link className="underline" to="/fotos">Ver todas as sessões</Link></div></main>;
