@@ -1,7 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { ContactOverlay } from "./contact-overlay";
 
 interface NavOverlayProps {
   open: boolean;
@@ -13,7 +12,6 @@ const NAV_LINKS = [
   { label: "Fotos", to: "/fotos", type: "link" as const },
   { label: "Inspirações", to: "/inspiracoes", type: "link" as const },
   { label: "Sobre", to: "/sobre", type: "link" as const },
-  { label: "Contato", to: "", type: "contact" as const },
 ];
 
 function NavPillLink({
@@ -28,7 +26,7 @@ function NavPillLink({
   onClick?: () => void;
   href?: string;
   to?: string;
-  type: "link" | "contact" | "external";
+  type: "link" | "external";
   onClose: () => void;
 }) {
   const [hovered, setHovered] = useState(false);
@@ -66,20 +64,6 @@ function NavPillLink({
     );
   }
 
-  if (type === "contact") {
-    return (
-      <button
-        onClick={onClick}
-        className={className}
-        style={pillStyle}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-      >
-        {children}
-      </button>
-    );
-  }
-
   return (
     <Link
       to={to || "/"}
@@ -95,7 +79,6 @@ function NavPillLink({
 }
 
 export function NavOverlay({ open, onClose }: NavOverlayProps) {
-  const [contactOpen, setContactOpen] = useState(false);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
   const previousFocus = useRef<HTMLElement | null>(null);
 
@@ -115,11 +98,6 @@ export function NavOverlay({ open, onClose }: NavOverlayProps) {
       previousFocus.current?.focus?.();
     };
   }, [open, onClose]);
-
-  const handleContactClick = () => {
-    onClose();
-    setTimeout(() => setContactOpen(true), 300);
-  };
 
   return (
     <>
@@ -158,7 +136,6 @@ export function NavOverlay({ open, onClose }: NavOverlayProps) {
                     type={link.type}
                     to={link.to}
                     href={link.to}
-                    onClick={link.type === "contact" ? handleContactClick : undefined}
                     onClose={onClose}
                   >
                     {link.label}
@@ -169,8 +146,6 @@ export function NavOverlay({ open, onClose }: NavOverlayProps) {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <ContactOverlay open={contactOpen} onClose={() => setContactOpen(false)} />
     </>
   );
 }
