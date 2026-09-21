@@ -134,7 +134,6 @@ const arquivosLondres = [
   "IMG_0459.webp",
   "IMG_0460.webp",
   "IMG_0462.webp",
-  "IMG_0463.webp",
   "IMG_0464.webp",
   "IMG_0465.webp",
   "IMG_0466.webp",

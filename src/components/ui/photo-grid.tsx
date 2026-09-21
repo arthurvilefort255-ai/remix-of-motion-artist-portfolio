@@ -7,7 +7,7 @@ function PhotoColumn({ fotos, atraso }: { fotos: FotoComSessao[]; atraso: number
     <div className="flex w-full flex-col gap-10 px-5 md:w-1/2 lg:w-1/3">
       {fotos.map((foto, index) => (
         <motion.div key={foto.arquivo} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.7, delay: index % 2 === 0 ? atraso : atraso + 0.1 }}>
-          <Link to={`/fotos/${foto.sessaoSlug}`} className="group block">
+          <Link to={`/fotos/${foto.sessaoSlug}?foto=${encodeURIComponent(foto.arquivo.split("/").pop() ?? "")}`} className="group block">
             <img src={foto.arquivo} alt={`${foto.titulo}, sessão ${foto.sessaoNome}`} width={1280} height={1600} loading="lazy" className="w-full max-w-[415px] object-cover transition-opacity duration-300 group-hover:opacity-90" />
             <span className="mt-3 block text-xs uppercase tracking-[1px] text-muted-foreground">{foto.sessaoNome}</span>
           </Link>

@@ -1,19 +1,33 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { SiteHeader } from "@/components/ui/site-header";
 import { buscarSessao } from "@/lib/sessoes";
 
 export default function Sessao() {
   const { sessao: slug } = useParams<{ sessao: string }>();
   const sessao = buscarSessao(slug);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [fotoAtiva, setFotoAtiva] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!sessao) return;
+    const arquivo = searchParams.get("foto");
+    if (!arquivo) return;
+    const indice = sessao.fotos.findIndex((foto) => foto.arquivo.split("/").pop() === arquivo);
+    if (indice >= 0) setFotoAtiva(indice);
+  }, [searchParams, sessao]);
+
+  const fecharFoto = () => {
+    setFotoAtiva(null);
+    setSearchParams({}, { replace: true });
+  };
 
   useEffect(() => {
     if (fotoAtiva === null || !sessao) return;
     const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setFotoAtiva(null);
+      if (event.key === "Escape") fecharFoto();
       if (event.key === "ArrowRight") setFotoAtiva((fotoAtiva + 1) % sessao.fotos.length);
       if (event.key === "ArrowLeft") setFotoAtiva((fotoAtiva - 1 + sessao.fotos.length) % sessao.fotos.length);
     };
@@ -56,7 +70,7 @@ export default function Sessao() {
       <AnimatePresence>
         {ativa && fotoAtiva !== null && (
           <motion.div className="fixed inset-0 z-[10000] flex items-center justify-center bg-foreground/95 p-4 md:p-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} role="dialog" aria-modal="true" aria-label={ativa.titulo}>
-            <button onClick={() => setFotoAtiva(null)} className="absolute right-5 top-5 text-background hover:opacity-60" aria-label="Fechar foto"><X /></button>
+            <button onClick={fecharFoto} className="absolute right-5 top-5 text-background hover:opacity-60" aria-label="Fechar foto"><X /></button>
             <button onClick={() => setFotoAtiva((fotoAtiva - 1 + sessao.fotos.length) % sessao.fotos.length)} className="absolute left-3 text-background hover:opacity-60 md:left-8" aria-label="Foto anterior"><ChevronLeft size={32} /></button>
             <figure className="flex max-h-full max-w-5xl flex-col items-center">
               <img src={ativa.arquivo} alt={`${ativa.titulo}: ${ativa.legenda}`} width={1280} height={1600} className="max-h-[80vh] max-w-full object-contain" />

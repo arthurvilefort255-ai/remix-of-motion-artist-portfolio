@@ -7,7 +7,6 @@ import {
   useMotionTemplate,
   useMotionValue,
 } from "framer-motion";
-import { ContactOverlay } from "./contact-overlay";
 import { Link } from "react-router-dom";
 import type { FotoComSessao } from "@/lib/sessoes";
 
@@ -133,7 +132,6 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
 
   // ---- Color-bg ----
   const [buttonHovered, setButtonHovered] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
   const colorBgRef = useRef<HTMLDivElement>(null);
 
   // ---- Scroll-based parallax ----
@@ -345,9 +343,8 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
               </h5>
 
               {/* Button */}
-              <button
-                type="button"
-                onClick={() => setContactOpen(true)}
+              <Link
+                to="/fotos"
                 className="rounded-full uppercase tracking-[1.85px] text-[15px] lg:text-[16px] px-[36px] py-[18px] lg:px-[40px] lg:py-[20px] leading-[120%] font-medium transition-all duration-300 cursor-pointer"
                 style={{
                   color: buttonHovered ? "var(--hero-light)" : "var(--hero-dark)",
@@ -363,8 +360,8 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
                 onMouseEnter={() => setButtonHovered(true)}
                 onMouseLeave={() => setButtonHovered(false)}
               >
-                Entre em contato
-              </button>
+                Ver as Fotos
+              </Link>
             </motion.div>
           </div>
 
@@ -404,7 +401,7 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
                     className="will-change-transform"
                     style={{ transform: "translate3d(0,0,0)" }}
                   >
-                    <Link to={`/fotos/${fotos[index].sessaoSlug}`} aria-label={`Ver sessão ${fotos[index].sessaoNome}`}>
+                    <Link to={`/fotos/${fotos[index].sessaoSlug}?foto=${encodeURIComponent(fotos[index].arquivo.split("/").pop() ?? "")}`} aria-label={`Abrir ${fotos[index].titulo}`}>
                       <HeroImage
                         w={img.w}
                         h={img.h}
@@ -495,7 +492,6 @@ export function HeroSection({ gridInView = false, fotos }: { gridInView?: boolea
           </motion.div>
         </div>
       </div>
-      <ContactOverlay open={contactOpen} onClose={() => setContactOpen(false)} />
     </>
   );
 }

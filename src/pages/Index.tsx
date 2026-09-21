@@ -11,7 +11,7 @@ function selecionarFotos(): FotoComSessao[] {
       .map((foto) => ({ ...foto, sessaoSlug: sessao.slug, sessaoNome: sessao.nome }))
       .sort(() => Math.random() - 0.5),
   );
-  return Array.from({ length: 6 }, (_, rodada) =>
+  return Array.from({ length: 7 }, (_, rodada) =>
     porSessao.map((fotos) => fotos[rodada]),
   ).flat();
 }
@@ -32,9 +32,9 @@ const Index = () => {
       }}
     >
       <SiteHeader />
-      <HeroSection gridInView={gridInView} fotos={fotos.slice(0, 9)} />
+      <HeroSection gridInView={gridInView} fotos={fotos.slice(0, 12)} />
       <div ref={gridRef}>
-        <PhotoGrid fotos={fotos.slice(9)} />
+        <PhotoGrid fotos={fotos.slice(12)} />
       </div>
     </div>
   );
