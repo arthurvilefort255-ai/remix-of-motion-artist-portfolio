@@ -107,7 +107,7 @@ const About = () => {
                 Estudo no Colégio Batista Mineiro e meu sonho é ser um Diretor de Filmes sucedido.
               </p>
               <p>
-                Cada foto é uma expressão da minha visão da cidade, das pessoas que me cercam e dos momentos que me marcam, não tento ser perfeito, estou tentando captar o que eu gosto de ver. espero que vocês gostem de também &lt;3
+                Cada foto é uma expressão da minha visão da cidade, das pessoas que me cercam e dos momentos que me marcam, não tento ser perfeito, estou tentando captar o que eu gosto de ver. espero que vocês gostem também &lt;3
               </p>
             </div>
 
