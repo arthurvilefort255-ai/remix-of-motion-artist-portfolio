@@ -17,3 +17,4 @@
 - Completar a grade de exploração com 12 fotos, distribuídas igualmente nas três colunas.
 
 - Adicionar as quatro fotos pessoais à página Sobre, com setas de navegação e nova biografia.
+- Preencher integralmente a área “Role para explorar” e remover as fotos 36 e 49 de Inhotim.
